@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForgeMark CNC Engraving | Custom Engraving & Security Marking</title>
+  <meta
+    name="description"
+    content="Professional CNC engraving for personalised items, branded products, signage, and security marking for tools and equipment. Custom jobs and mobile site visits available."
+  />
+  <style>
+    :root {
+      --bg: #090b0f;
+      --bg-2: #11151c;
+      --panel: rgba(255,255,255,0.04);
+      --panel-strong: rgba(255,255,255,0.06);
+      --line: rgba(255,255,255,0.1);
+      --text: #f5f7fb;
+      --muted: #b7c1d1;
+      --red: #d91f26;
+      --red-2: #ff4d55;
+      --glow: rgba(217,31,38,0.35);
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(217,31,38,0.16), transparent 20%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.05), transparent 18%),
+        linear-gradient(180deg, #06080c 0%, #0c1016 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(6,8,12,0.76);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    .brand-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red), var(--red-2));
+      color: #fff;
+      box-shadow: 0 10px 30px var(--glow);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(217,31,38,0.45);
+    }
+
+    .hero {
+      padding: 88px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(217,31,38,0.12);
+      border: 1px solid rgba(217,31,38,0.25);
+      color: #ffd8da;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      margin-bottom: 18px;
+      max-width: 760px;
+    }
+
+    .hero-copy {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-card,
+    .card,
+    .process-step,
+    .pricing-card,
+    .quote-panel {
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .hero-card-top h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-top p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .mini-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-list li {
+      padding-left: 18px;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .mini-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      position: absolute;
+      left: 0;
+      top: 10px;
+      box-shadow: 0 0 12px var(--glow);
+    }
+
+    section {
+      padding: 34px 0 70px;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .grid-2,
+    .grid-3,
+    .process-grid,
+    .pricing-grid,
+    .quote-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      padding: 26px;
+    }
+
+    .card h3 {
+      font-size: 1.22rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 16px;
+      color: var(--muted);
+    }
+
+    .list li::before {
+      content: "—";
+      color: var(--red);
+      position: absolute;
+      left: 0;
+    }
+
+    .accent-card {
+      border-color: rgba(217,31,38,0.26);
+      background:
+        linear-gradient(180deg, rgba(217,31,38,0.1), rgba(255,255,255,0.03));
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .process-step {
+      padding: 22px;
+    }
+
+    .step-no {
+      display: inline-block;
+      color: var(--red);
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .process-step h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pricing-card {
+      padding: 26px;
+    }
+
+    .pricing-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .price small {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .pricing-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .pricing-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .quote-panel {
+      padding: 32px;
+      background:
+        radial-gradient(circle at top right, rgba(217,31,38,0.14), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+    }
+
+    .quote-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+    }
+
+    .quote-panel h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    .quote-panel p {
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .contact-box {
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-box .btn {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .contact-meta {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .process-grid,
+      .pricing-grid,
+      .quote-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 64px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-name">FORGE<span>MARK</span></div>
+        <div class="brand-tag">CNC Engraving • Custom Work • Security Marking</div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#who">Who It’s For</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#quote" class="btn btn-primary">Get a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Precision CNC engraving with real-world business value</div>
+          <h1>Custom engraving for people. Security marking for businesses.</h1>
+          <p class="hero-copy">
+            Professional CNC engraving for personalised items, branded products, signage,
+            tools, and site equipment. Ideal for one-off gifts, repeat business work,
+            and practical asset marking that helps protect valuable gear.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#quote" class="btn btn-primary">Request a Quote</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+
+          <div class="hero-pills">
+            <div class="pill">Personalised gifts & keepsakes</div>
+            <div class="pill">Trade tool security marking</div>
+            <div class="pill">Business logos & serial numbers</div>
+            <div class="pill">Mobile site visits possible</div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-top">
+            <h3>Popular jobs</h3>
+            <p>Simple service categories people understand immediately.</p>
+          </div>
+
+          <ul class="mini-list">
+            <li>Names, dates, messages and one-off personalised pieces</li>
+            <li>Branded tags, plaques, signs and workshop labels</li>
+            <li>Company name and phone number on tools and cases</li>
+            <li>Asset numbers for internal tracking and identification</li>
+            <li>Batch engraving for small businesses and site teams</li>
+            <li>Potential van-based service for on-site marking work</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Two strong service angles</h2>
+          <p>
+            This works because it combines a premium custom service with a practical
+            problem-solving service. One side sells emotion and uniqueness. The other
+            side sells protection, traceability and convenience.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card accent-card">
+            <h3>Personalised & Custom Engraving</h3>
+            <p>
+              Bespoke engraving for gifts, display items, keepsakes, signs, plaques,
+              branded accessories and creative custom requests.
+            </p>
+            <ul class="list">
+              <li>Names, dates, initials and personal messages</li>
+              <li>Wedding, birthday and gift items</li>
+              <li>Custom plaques, labels and branded pieces</li>
+              <li>Small-run custom work for creators and local businesses</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Security Marking & Asset ID</h3>
+            <p>
+              Practical engraving for trades, workshops, schools, landlords, vans,
+              contractors and businesses with valuable tools or equipment.
+            </p>
+            <ul class="list">
+              <li>Tool and equipment identification</li>
+              <li>Company name, phone number or postcode marking</li>
+              <li>Asset numbers and serial references</li>
+              <li>Possible mobile site or workshop visit service</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="who">
+      <div class="container">
+        <div class="section-head">
+          <h2>Who this is for</h2>
+          <p>
+            The beauty of this model is range. It can serve everyday customers,
+            local trades, and commercial clients under the same brand.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Individuals</h3>
+            <p>
+              People looking for personalised gifts, engraved keepsakes, custom signs
+              or one-off pieces with a professional finish.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Trades & Site Teams</h3>
+            <p>
+              Electricians, builders, plumbers, fitters and mobile teams who want
+              their tools clearly marked and easier to identify.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Businesses</h3>
+            <p>
+              Workshops, property firms, schools and local companies needing labels,
+              asset references, branded items or repeat batch jobs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Why customers buy</h2>
+          <p>
+            This is not just decorative. It creates clear value and gives people
+            reasons to come back.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Looks good</h3>
+            <p>
+              Clean engraving makes gifts, labels and branded items feel more premium
+              and more intentional.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Protects assets</h3>
+            <p>
+              Marking tools and equipment helps with identification, ownership clarity
+              and general deterrence.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Easy repeat work</h3>
+            <p>
+              Once a business starts marking tools, storage, cases or stock, more
+              follow-on work usually appears.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <h2>Simple job flow</h2>
+          <p>
+            Keep it easy: customer sends a request, gets a quote, approves the wording
+            or numbering, and the work gets done.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step">
+            <span class="step-no">01</span>
+            <h3>Enquire</h3>
+            <p>
+              Send over the item type, quantity, wording, logo or asset details.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <span class="step-no">02</span>
+            <h3>Quote</h3>
+            <p>
+              Receive a price, turnaround estimate and confirmation of whether the
+              job is workshop-based or suitable for a visit.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <span class="step-no">03</span>
+            <h3>Approve</h3>
+            <p>
+              Confirm text, numbering, logo placement or job spec before engraving starts.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <span class="step-no">04</span>
+            <h3>Engrave</h3>
+            <p>
+              The work is completed accurately and returned, collected or carried out on site.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <h2>Starter pricing structure</h2>
+          <p>
+            Just a placeholder framework for now. Real prices can be refined later
+            once he knows his time, materials and travel costs properly.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Personalised Items</h3>
+            <div class="price">from £15 <small>per item</small></div>
+            <p>
+              For names, messages, dates and simple one-off engraving jobs.
+            </p>
+            <ul class="list">
+              <li>Good for gifts and keepsakes</li>
+              <li>Simple pricing for easy enquiries</li>
+              <li>Upsell possible for premium finishes</li>
+            </ul>
+          </div>
+
+          <div class="pricing-card accent-card">
+            <h3>Business / Batch Jobs</h3>
+            <div class="price">from £45 <small>per order</small></div>
+            <p>
+              For multi-item runs, branded pieces, plaques, labels and repeat work.
+            </p>
+            <ul class="list">
+              <li>Ideal for small business clients</li>
+              <li>Discounts can scale by quantity</li>
+              <li>Good repeat-customer angle</li>
+            </ul>
+          </div>
+
+          <div class="pricing-card">
+            <h3>Security Marking Visits</h3>
+            <div class="price">from £95 <small>per visit</small></div>
+            <p>
+              For local tool-marking or site-based asset ID sessions, depending on travel and volume.
+            </p>
+            <ul class="list">
+              <li>Strong trade/business offer</li>
+              <li>Convenience makes it premium</li>
+              <li>Extra travel radius can be added</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="pricing-note">
+          Note: pricing shown is example starter copy only. Replace with actual commercial figures later.
+        </p>
+      </div>
+    </section>
+
+    <section id="quote">
+      <div class="container">
+        <div class="quote-panel">
+          <div class="quote-grid">
+            <div>
+              <h2>Need something engraved?</h2>
+              <p>
+                Whether you want a one-off personalised piece, branded business items,
+                or security marking for tools and equipment, get in touch with a few
+                details and we’ll price it up.
+              </p>
+            </div>
+
+            <div class="contact-box">
+              <a href="mailto:hello@forgemark.co.uk" class="btn btn-primary">Email for Quote</a>
+              <a href="tel:+440000000000" class="btn btn-secondary">Call Now</a>
+
+              <ul class="contact-meta">
+                <li>Email: hello@forgemark.co.uk</li>
+                <li>Phone: 0000 000 000</li>
+                <li>Coverage: Local area + possible mobile visits</li>
+                <li>Typical jobs: custom, business, trade, security marking</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 ForgeMark. Precision CNC engraving for custom work, business branding and asset identification.
+    </div>
+  </footer>
+</body>
+</html>
